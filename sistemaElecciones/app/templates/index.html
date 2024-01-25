@@ -26,13 +26,13 @@
       <div class="input-group">
         <img src="../static/css/image/tarjeta2.png" class="icons" alt="">
         <label for="usuario" id="ci">Cédula de Identidad</label>
-        <input class="form-control" id="inputEmail" name="usuario" type="password" placeholder="Ejm: 8912557" />
+        <input class="form-control" id="inputEmail" name="ci" type="password" placeholder="Ejm: 8912557" />
       </div>
       <div class="input-group" style="margin-bottom: 5px;">
 
         <img src="../static/css/image/calendario.png" class="icons" alt="">
         <label for="password" id="fechaNacimiento">Fecha de Nacimiento</label>
-        <select class="form-control" id="inputPassword" name="passwd" placeholder="Password">
+        <select class="form-control" id="inputPassword" name="fecha_nacimiento" placeholder="Password">
           {% for numero in numeros_dia %}
           <option value="{{ numero }}">
             {{ numero }}
