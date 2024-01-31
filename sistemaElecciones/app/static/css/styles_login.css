@@ -6,10 +6,22 @@ body{
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: 100% 100%;
-
+  font-family: Arial, Helvetica, sans-serif;
   background-color: rgba(255, 255, 255, 255);
+  margin:0%;
 
-  
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 0%;
+}
+.container .image {
+  margin-top: 50px;
+  height: 423px;
+  border-top: 1px solid #006494; 
+  border-bottom: 1px solid #006494; 
+  border-left: 1px solid #006494; 
+}
 }
 .form-container {
   width: 320px;
@@ -21,6 +33,13 @@ body{
   
 }
 
+.flash-container{
+  display:flex;
+  width: 100%;
+  background-color: #006494;
+  justify-content: center;
+  color: #fff;
+}
 
 .navbar {
   background-color: rgba(238,238,238,255);
@@ -65,6 +84,7 @@ body{
   font-weight: 700;
   background-color: #006494;
   color: #fff;
+  margin-top: 50px;
 }
 
 .form {

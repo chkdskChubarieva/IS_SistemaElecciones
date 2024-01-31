@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Elecciones</title>
+    <link rel="stylesheet" href="../static/css/styles_voto.css">
+    <script>
+        function toggleDropdown() {
+            var dropdownContenido = document.querySelector('.dropdown-contenido');
+            if (dropdownContenido.style.display === 'block') {
+                dropdownContenido.style.display = 'none';
+            } else {
+                dropdownContenido.style.display = 'block';
+            }
+        }
+
+    </script>
+    <script>
+        $(document).ready(function() {
+            // Ocultar el mensaje después de 5 segundos
+            $(".flash-messages").delay(5000).fadeOut("slow");
+    
+            // Manejar el evento de clic en el botón
+            $("#botonAceptar").click(function() {
+                $(".flash-messages").fadeOut("slow");
+            });
+        });
+    </script>
+</head>
+
+<body>
+
+    <div class="flash-container">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+
+            {{ message }}
+            <button id="botonAceptar">Aceptar</button>
+
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="tittle">Candidatos Elecciones</div>
+
+        <form action="/emitirVoto" id="formVoto" method="post">
+            <div class="contenedor-imagenes">
+                <div class="item">
+                    <div class="contenedor">
+                        <img src="../static/css/image/obama.jpg" alt="Imagen 1">
+                        <div class="Nombre">Manfred Reyes </div>
+
+                        <input type="radio" id="voto" value="{{ candidatos[0].partido }}"> Elegir
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="contenedor">
+                        <img src="../static/css/image/obama.jpg" alt="Imagen 2">
+                        <div class="Nombre"> Barak Obama</div>
+                        <input type="radio" name="voto" value="{{ candidatos[1].partido }}"> Elegir
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="contenedor">
+                        <img src="../static/css/image/putin.jpg" alt="Imagen 3">
+                        <div class="Nombre"> Vladimir Putin</div>
+                        <input type="radio" name="voto" value="{{ candidatos[2].partido }}"> Elegir
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="contenedor">
+                        <img src="../static/css/image/manfred.jpg" alt="Imagen 4">
+                        <div class="Nombre"> Manfred</div>
+                        <input type="radio" name="voto" value="Nulo"> Elegir
+
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="contenedor">
+                        <img src="../static/css/image/obama.jpg" alt="Imagen 5">
+                        <div class="Nombre"> Manfred</div>
+                        <div class="Partido">lko</div>
+                        <input type="radio" name="voto" value="Blanco"> Elegir
+
+                    </div>
+                </div>
+            </div>
+            <div class="boton-votar">
+                <button type="submit">Votar</button>
+            </div>
+        </form>
+
+</body>
+
+<script>
+
+    document.getElementById('formVoto').addEventListener('submit', function (e) {
+        var radios = document.getElementsByName('voto');
+        var formValid = false;
+        var valorSeleccionado = null; // Variable para almacenar el valor del radio seleccionado
+
+        var i = 0;
+        while (!formValid && i < radios.length) {
+            if (radios[i].checked)
+                formValid = true;
+            valorSeleccionado = radios[i].value; // Obtener el valor del radio seleccionado
+            i++;
+        }
+
+        if (!formValid) {
+            alert('Por favor, selecciona una opción.');
+            e.preventDefault();
+        }
+    });
+
+</script>
+
+
+</html>

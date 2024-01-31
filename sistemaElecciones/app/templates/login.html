@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://cdn.pixabay.com/photo/2016/03/31/19/57/avatar-1295404_1280.png" />
+  <link rel="stylesheet" href="../static/css/styles_login.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Ocultar el mensaje después de 5 segundos
+        $(".flash-messages").delay(5000).fadeOut("slow");
+
+        // Manejar el evento de clic en el botón
+        $("#botonAceptar").click(function() {
+            $(".flash-messages").fadeOut("slow");
+        });
+    });
+</script>
+</head>
+
+<body>
+
+  <div class="flash-container">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+      {% for message in messages %}
+
+      {{ message }}
+      <button id="botonAceptar">Aceptar</button>
+
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+  </div>
+  <div class="container">
+    <img src="../static/css/image/oep.jpg" class="image" alt="">
+
+    <div class="container-login">
+
+      <div class="title">Iniciar Sesión</div>
+      <div class="form-container">
+
+        <form class="form" method="POST" action="/login" method="post">
+          <div class="input-group">
+            <img src="../static/css/image/tarjeta2.png" class="icons" alt="">
+            <label for="usuario" id="ci">Cédula de Identidad</label>
+            <input class="form-control" id="ci" name="ci" type="password" placeholder="Ejm: 8912557" />
+          </div>
+          <div class="input-group" style="margin-bottom: 5px;">
+
+            <img src="../static/css/image/calendario.png" class="icons" alt="">
+            <label for="dia" id="fechaNacimiento">Fecha de Nacimiento</label>
+            <select class="form-control" id="dia" name="dia" placeholder="dia">
+              {% for numero in numeros_dia %}
+              <option value="{{ numero }}">
+                {{ numero }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-group2">
+            <select class="form-control" id="month" name="month" placeholder="mes">
+              {% for mes in meses %}
+              <option value="{{ mes }}">
+                {{ mes }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <div class="input-group2">
+            <select class="form-control" id="anio" name="anio" placeholder="anio">
+              {% for anio in anios %}
+              <option value="{{ anio }}">
+                {{ anio }}
+              </option>
+              {% endfor %}
+            </select>
+          </div>
+          <button type="submit" href="verDatos.html" class="button_a">
+            <img src="" alt="">
+            Ingresar
+          </button>
+        </form>
+        <div class="social-message">
+          <div class="line"></div>
+          <a class="small" href="register.php">No tiene cuenta? cree una</a>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="text-muted">Copyright CDL &copy; Your Website 2023
+      </div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        &middot;
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

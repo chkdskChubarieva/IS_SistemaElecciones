@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interfaz de Usuario</title>
+  <link rel="stylesheet" href="../static/css/styles_verDatos.css">
+</head>
+
+<body>
+  <div class="title">Datos del elector</div>
+  <table>
+    <thead>
+      <tr>
+        <th>Carnet de Identidad</th>
+        <th>Nombre Completo</th>
+        <th>Fecha de Nacimiento</th>
+        <th>Género</th>
+        <th>Estado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{current_user.ci}}</td>
+        <td>{{current_user.nombre}}</td>
+        <td>{{current_user.fecha_nacimiento}}</td>
+        <td>{{current_user.genero}}</td>
+        {%if current_user.habilitado == 1: %}
+        <td>
+          {{'Habilitado'}}
+        </td>
+        {%else:%}
+        <td>
+          {{'Inhabilitado'}}
+        </td>
+        {%endif%}
+      </tr>
+      <!-- Puedes agregar más filassegún sea necesario -->
+    </tbody>
+  </table>
+
+  <a href="./emitirVoto" class="link_a">
+    <button type="button" class="button_a">
+      <img src="" alt="">
+      EMITIR VOTO
+    </button>
+  </a>
+</body>
+
+</html>

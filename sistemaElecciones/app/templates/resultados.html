@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Elecciones</title>
+    <link rel="stylesheet" href="../static/css/resultados.css">
+    <script>
+        function toggleDropdown() {
+            var dropdownContenido = document.querySelector('.dropdown-contenido');
+            if (dropdownContenido.style.display === 'block') {
+                dropdownContenido.style.display = 'none';
+            } else {
+                dropdownContenido.style.display = 'block';
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="tittle">Resultados de las elecciones</div>
+
+    <div class="contadorDeVotos">
+        <p> 10000 votos</p>
+    </div>
+
+    <div class="textoVotos">
+        <p> Total de votos emitidos:</p>
+    </div>
+
+    <div class="contenedor-imagenes">
+        <div class="item">
+            <div class="contenedor">
+                <img src="../static/css/image/obama.jpg" alt="Imagen 1">
+                <div class="Nombre">Barak Obama </div>
+                <div class="Partido">KML</div>
+                <div class="PorcentajeVotos"></div>
+                <div class="CantidadVotos">{{contador1}}</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="contenedor">
+                <img src="../static/css/image/putin.jpg" alt="Imagen 2">
+                <div class="Nombre"> Putin</div>
+                <div class="Partido">XYZ</div>
+                <div class="PorcentajeVotos"></div>
+                <div class="CantidadVotos">{{contador2}}</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="contenedor">
+                <img src="../static/css/image/manfred.jpg" alt="Imagen 3">
+                <div class="Nombre"> Manfred</div>
+                <div class="Partido">RQT</div>
+                <div class="PorcentajeVotos"></div>
+                <div class="CantidadVotos">{{contador3}}</div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="contenedor">
+                <img src="../static/css/image/NULO.png" alt="Imagen 4">
+                <div class="Nombre"> Manfred</div>
+                <div class="Partido">NULO</div>
+                <div class="PorcentajeVotos"></div>
+                <div class="CantidadVotos"></div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="contenedor">
+                <img src="../static/css/image/Blanco.png" alt="Imagen 5">
+                <div class="Nombre"> Manfred</div>
+                <div class="Partido">BLANCO</div>
+                <div class="PorcentajeVotos"></div>
+                <div class="CantidadVotos"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="botones-container">
+        <a href="./logout" class="link_a">
+            <button id="botonSalir">Salir</button>
+            <img src="" alt="">
+            SALIR
+            </button>
+        </a>
+    </div>
+    <div class="dropdown">
+        <button id="botonExportar" onclick="toggleDropdown()" tabindex="0">Exportar datos</button>
+        <div class="dropdown-contenido">
+            <button onclick="exportarComoCSV()">Exportar como CSV</button>
+            <button onclick="exportarComoPDF()">Exportar como PDF</button>
+        </div>
+    </div>
+    <button id="botonGraficas">Ver gráficas</button>
+    </div>
+</body>
+
+</html>
