@@ -18,19 +18,18 @@
 
     </script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             // Ocultar el mensaje después de 5 segundos
             $(".flash-messages").delay(5000).fadeOut("slow");
-    
+
             // Manejar el evento de clic en el botón
-            $("#botonAceptar").click(function() {
+            $("#botonAceptar").click(function () {
                 $(".flash-messages").fadeOut("slow");
             });
         });
     </script>
 </head>
-
-<body>
+<header>
     <div class="flash-container">
 
         {% with messages = get_flashed_messages() %}
@@ -46,57 +45,26 @@
         {% endif %}
         {% endwith %}
         <div class="tittle">Candidatos Elecciones</div>
-
+</header>
+<body>
         <form action="/emitirVoto" id="formVoto" method="post">
             <div class="contenedor-imagenes">
+                {% for candidato in candidatos %}
                 <div class="item">
                     <div class="contenedor">
-                        <img src="../static/css/image/obama.jpg" alt="Imagen 2">
-                        <div class="Nombre"> Barak Obama</div>
-                        <div class="Partido">{{ candidatos[0].partido }}</div>
-                        <input type="radio" name="voto" value="{{ candidatos[0].partido }}"> Elegir
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="contenedor">
-                        <img src="../static/css/image/putin.jpg" alt="Imagen 3">
-                        <div class="Nombre"> Vladimir Putin</div>
-                        <div class="Partido">{{ candidatos[1].partido }}</div>
-                        <input type="radio" name="voto" value="{{ candidatos[1].partido }}"> Elegir
+                        <img src="../static/css/image/{{candidato.FOTO}}" alt="Imagen 5">
+                        <div class="Nombre">{{candidato.NOMBRE}}</div>
+                        <div class="Partido">{{candidato.PARTIDO}}</div>
+                        <input type="radio" name="voto" class="cuadrado" value="{{candidato.PARTIDO}}">
 
                     </div>
                 </div>
-                <div class="item">
-                    <div class="contenedor">
-                        <img src="../static/css/image/manfred.jpg" alt="Imagen 4">
-                        <div class="Nombre"> Manfred</div>
-                        <div class="Partido">{{ candidatos[2].partido }}</div>
-                        <input type="radio" name="voto" value="{{ candidatos[2].partido }}"> Elegir
-
-                    </div>
-                </div>
-                <div class="item">
-                    <div class="contenedor">
-                        <img src="../static/css/image/NULO.png" alt="Imagen 5">
-                        <div class="Nombre"> Nulo</div>
-                        <input type="radio" name="voto" value="Nulo"> Elegir
-
-                    </div>
-                </div>
-                
-                <div class="item">
-                    <div class="contenedor">
-                        <img src="../static/css/image/Blanco.png" alt="Imagen 5">
-                        <div class="Nombre"> Blanco</div>
-                        <input type="radio" name="voto" value="Blanco"> Elegir
-
-                    </div>
-                </div>
-
+                {% endfor %}
             </div>
-            <div class="boton-votar">
-                <button type="submit">Votar</button>
-            </div>
+            <button type="submit" href="resultados.html" class="button_a">
+                <img src="" alt="">
+                EMITIR VOTO
+            </button>
         </form>
     </div>
 </body>

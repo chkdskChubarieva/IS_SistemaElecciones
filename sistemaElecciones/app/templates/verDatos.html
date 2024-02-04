@@ -10,42 +10,55 @@
 
 <body>
   <div class="title">Datos del elector</div>
-  <table>
-    <thead>
-      <tr>
-        <th>Carnet de Identidad</th>
-        <th>Nombre Completo</th>
-        <th>Fecha de Nacimiento</th>
-        <th>Género</th>
-        <th>Estado</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>{{current_user.ci}}</td>
-        <td>{{current_user.nombre}}</td>
-        <td>{{current_user.fecha_nacimiento}}</td>
-        <td>{{current_user.genero}}</td>
-        {%if current_user.habilitado == 1: %}
-        <td>
-          {{'Habilitado'}}
-        </td>
-        {%else:%}
-        <td>
-          {{'Inhabilitado'}}
-        </td>
-        {%endif%}
-      </tr>
-      <!-- Puedes agregar más filassegún sea necesario -->
-    </tbody>
-  </table>
+  <div class="form-container">
+    <form class="form" method="POST" action="<?php echo $_SERVER['PHP_SELF'];?>">
+      <div class="image-container">
+        <img src="../static/css/image/foto.jpg" class="circular-image" id="foto-perfil" alt="">
+      </div>
+      <div class="input-group">
+        <img src="../static/css/image/tarjeta2.png" class="icons" alt="">
+        <span class="info-label">Cédula de Identidad:</span>
+        <label id="ci_elector" class="info-value">{{current_user.CI}}</label>
+      </div>
 
-  <a href="./emitirVoto" class="link_a">
-    <button type="button" class="button_a">
-      <img src="" alt="">
-      EMITIR VOTO
-    </button>
-  </a>
+      <div class="input-group" style="margin-bottom: 5px;">
+        <img src="../static/css/image/usuario.png" class="icons" alt="">
+        <span class="info-label">Nombre completo:</span>
+        <label id="nom_elector" class="info-value">{{current_user.NOMBRE}}</label>
+      </div>
+
+
+      <div class="input-group" style="margin-bottom: 5px;">
+        <img src="../static/css/image/calendario.png" class="icons" alt="">
+        <span class="info-label">Fecha de nacimiento:</span>
+        <label id="fec_elector" class="info-value">{{current_user.FECHA_NACIMIENTO}}</label>
+
+      </div>
+
+      <div class="input-group" style="margin-bottom: 5px;">
+        <img src="../static/css/image/identidad-de-genero.png" class="icons" alt="">
+        <span class="info-label">Género:</span>
+        <label id="gen_elector" class="info-value">{{current_user.GENERO}}</label>
+      </div>
+
+      <div class="input-group" style="margin-bottom: 5px;">
+        <img src="../static/css/image/garrapata.png" class="icons" alt="">
+        <span class="info-label">Estado:</span>
+        {%if current_user.ESTADO_HABILITADO == 1: %}
+          <label id="est_elector" class="info-value">{{'Habilitado'}}</label>
+        {%else:%}
+         <label id="est_elector" class="info-value">{{'Inhabilitado'}}</label>
+        {%endif%}
+      </div>
+
+      <a href="./emitirVoto" class="link_a">
+        <button type="button" class="button_a">
+          <img src="" alt="">
+          EMITIR VOTO
+        </button>
+      </a>
+    </form>
+  </div>
 </body>
 
 </html>

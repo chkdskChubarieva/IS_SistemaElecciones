@@ -39,6 +39,7 @@ body{
   background-color: #006494;
   justify-content: center;
   color: #fff;
+  position: absolute;
 }
 
 .navbar {

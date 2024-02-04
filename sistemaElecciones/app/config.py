@@ -10,7 +10,6 @@ class DevelopmentConfig(Config):
     MYSQL_PASSWORD = 'mundolibre'
     MYSQL_DB = 'chkdsk7$sistemaelecciones'
 
-
 config = {
     'development': DevelopmentConfig
 }

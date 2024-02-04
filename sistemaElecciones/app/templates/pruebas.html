@@ -38,10 +38,10 @@
 
     <!-- Contenedor del mensaje emergente -->
     <div id="popup" class="popup-container">
-       
+
         <p>{{data.nombre}}</p>
         <p>{{current_user.habilitado}}</p> <!-- 2 maneras de obtener valores de variables -->
-   
+
 
         <button onclick="cerrarPopup()">Cerrar</button>
         <a class="btn btn-secondary" href="{{ url_for('logout') }}">Logout</a>
