@@ -20,16 +20,12 @@
     <script>
         $(document).ready(function () {
             // Ocultar el mensaje después de 5 segundos
-            $(".flash-messages").delay(5000).fadeOut("slow");
-
-            // Manejar el evento de clic en el botón
-            $("#botonAceptar").click(function () {
-                $(".flash-messages").fadeOut("slow");
-            });
+            $(".flash-messages").delay(3000).fadeOut("slow");
         });
     </script>
 </head>
-<header>
+
+<body>
     <div class="flash-container">
 
         {% with messages = get_flashed_messages() %}
@@ -38,23 +34,30 @@
             {% for message in messages %}
 
             {{ message }}
-            <button id="botonAceptar">Aceptar</button>
-
+            
             {% endfor %}
         </div>
         {% endif %}
         {% endwith %}
         <div class="tittle">Candidatos Elecciones</div>
-</header>
-<body>
+
         <form action="/emitirVoto" id="formVoto" method="post">
             <div class="contenedor-imagenes">
                 {% for candidato in candidatos %}
                 <div class="item">
-                    <div class="contenedor">
-                        <img src="../static/css/image/{{candidato.FOTO}}" alt="Imagen 5">
+                   
+                    <div class="contenedor" style="background-color: {{candidato.COLOR}};">
+                        {%if candidato.COLOR == '':%}
                         <div class="Nombre">{{candidato.NOMBRE}}</div>
+                        {%else:%}
+                        <div class="Nombre" style="color: white;">{{candidato.NOMBRE}}</div>
+                        {%endif%}
+                        <img class="imagen" src="../static/css/image/{{candidato.FOTO}}" alt="Imagen 5">
+                        {%if candidato.COLOR == '':%}
                         <div class="Partido">{{candidato.PARTIDO}}</div>
+                        {%else:%}
+                        <div class="Partido" style="color: white;">{{candidato.PARTIDO}}</div>
+                        {%endif%}
                         <input type="radio" name="voto" class="cuadrado" value="{{candidato.PARTIDO}}">
 
                     </div>

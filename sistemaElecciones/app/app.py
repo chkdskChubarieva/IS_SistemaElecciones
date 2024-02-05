@@ -16,11 +16,6 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
 
-#@login_manager_app.user_loader
-#def load_user(user_id):
-#    return Elector.query.get(int(user_id))
-
-
 class Elector(conexion.Model, UserMixin):
     ID_ELECTOR = conexion.Column(conexion.Integer, primary_key=True, autoincrement=True)
     NOMBRE = conexion.Column(conexion.String(30))
@@ -28,7 +23,7 @@ class Elector(conexion.Model, UserMixin):
     FECHA_NACIMIENTO = conexion.Column(conexion.Date)
     GENERO = conexion.Column(conexion.String(15))
     ESTADO_HABILITADO = conexion.Column(conexion.Integer)
-
+    
     def get_id(self):
         return str(self.ID_ELECTOR)
     
@@ -40,31 +35,33 @@ class Candidato(conexion.Model): #nombre, ci, fecha_nacimiento, genero, partido
     GENERO = conexion.Column(conexion.String(15))
     votos = conexion.Column(conexion.Integer)
     FOTO = conexion.Column(conexion.String(50))
-    PARTIDO = conexion.Column(conexion.String(20))   
+    PARTIDO = conexion.Column(conexion.String(20)) 
+    COLOR = conexion.Column(conexion.String(20))
     
 
 class Comite(conexion.Model, UserMixin):
-    COD_COMITE = conexion.Column(conexion.String(15), primary_key=True)
+    ID_COMITE = conexion.Column(conexion.String(15), primary_key=True, autoincrement=True)
     NOMBRE = conexion.Column(conexion.String(30))
     CI = conexion.Column(conexion.String(10))
     FECHA_NACIMIENTO = conexion.Column(conexion.Date)
     GENERO = conexion.Column(conexion.String(15))
     ROL = conexion.Column(conexion.String(15))
-    def get_id(self):
-        return str(self.CI)
+    CODIGO = conexion.Column(conexion.String(15))
 
-#users = {
-   # 'elector_user': Elector('elector_user'),
-   # 'comite_user': Comite('comite_user')
-#}
+    def get_id(self):
+        return str(self.ID_COMITE)
+
 @login_manager.user_loader
 def load_user(user_id):
-        return Elector.query.get(int(user_id))
+    elector = Elector.query.get(int(user_id))
+    comite = Comite.query.get(int(user_id))
+    if elector:
+        return elector
+    elif comite:
+        return comite
   
-
 @app.route('/')
 def index():
-   
     return redirect(url_for('login'))
 
 @app.route('/login')
@@ -78,13 +75,9 @@ def diccionario():
     
     return render_template('login.html', numeros_dia=numeros_dia, meses=meses, anios=anios)
     
-    
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        # print(request.form['username'])
-        # print(request.form['password'])
-        
         dia = request.form.get('dia') # recupera ci del formulario
         mes = request.form.get('month')
         partes = mes.split('-')
@@ -102,59 +95,16 @@ def login():
                 flash("Está inhabilitado para votar")
                 return redirect(url_for('login'))
         else:
-            flash("No está registrado en el padrón electoral")
-            return redirect(url_for('login'))
+             if request.form['ci'] == '':
+                flash("Por favor, ingrese sus datos en el formulario")
+                return redirect(url_for('login'))
+             else:    
+                flash("No está registrado en el padrón electoral")
+                return redirect(url_for('login'))
     else:
         return redirect(url_for('login'))
  
-@app.route('/verDatos')
-@login_required
-def verDatos():
-    return render_template('/verDatos.html')   
-  
-
-
-
-@app.route('/emitirVoto') 
-@login_required
-def emitir():
-   
-    candidatos=Candidato.query.all()
-    return render_template('/emitirVoto.html', candidatos=candidatos) 
-
-@app.route('/emitirVoto', methods=['GET', 'POST']) 
-@login_required
-def emitirVoto():
-    #voto = Voto(logged_user, request.form.get('voto'))
-   global logged_user
-   if request.method == 'POST':
-    candidato = Candidato.query.filter_by(PARTIDO=request.form.get('voto')).first()
-    if candidato:
-        # Aumenta en uno el valor de los votos del candidato
-        candidato.votos += 1
-        # Guarda los cambios en la base de datos
-       
-        #Elector.query.filter_by(CI=logged_user.CI).update({'ESTADO_HABILITADO': '0'})
-
-        # Confirma los cambios en la base de datos
-        conexion.session.commit()
-        
-        flash("Has votado por:{}".format(candidato.NOMBRE))
-    else:
-        print("No se encontró ningún candidato")
-    
-    return redirect(url_for('logout'))
-
-@app.route('/resultados')
-
-def resultados():
-    cantidad_votos=0
-    candidatos=Candidato.query.all()
-    for candidato in candidatos:
-        cantidad_votos += candidato.votos
-        
-    return render_template('resultados.html', candidatos=candidatos, cantidad_votos=cantidad_votos)
-
+ 
 @app.route('/login_comite')
 def login_c():
     return render_template('/login_comite.html')
@@ -162,17 +112,58 @@ def login_c():
 @app.route('/login_comite', methods=['GET', 'POST'])
 def login_comite():
     if request.method == 'POST':
-        global logged_comite
-        logged_comite = Comite.query.filter_by(CI=request.form['ci'], COD_COMITE=request.form['codigo_comite']).first()
+        logged_comite = Comite.query.filter_by(CI=request.form['ci'], CODIGO=request.form['codigo_comite']).first()
         if logged_comite != None:
+           
             login_user(logged_comite)
+         
             return redirect(url_for('resultados'))
         else:
-            flash("No está registrado como miembro del comite electoral")
-            return redirect(url_for('login_comite'))
+            if request.form['ci'] == '' or request.form['codigo_comite'] =='':
+                flash("Por favor, ingrese sus datos en el formulario")
+                return redirect(url_for('login_comite'))
+            else:    
+                flash("No está registrado como miembro del comite electoral")
+                return redirect(url_for('login_comite'))
     else:
-        return redirect(url_for('login_comite'))
-    
+        return redirect(url_for('login_comite')) 
+ 
+@app.route('/verDatos')
+@login_required
+def verDatos():
+    return render_template('/verDatos.html')   
+  
+
+@app.route('/emitirVoto') 
+@login_required
+def emitir():
+    candidatos=Candidato.query.all()
+    return render_template('/emitirVoto.html', candidatos=candidatos) 
+
+@app.route('/emitirVoto', methods=['GET', 'POST']) 
+@login_required
+def emitirVoto():
+   global logged_user
+   if request.method == 'POST':
+    candidato = Candidato.query.filter_by(PARTIDO=request.form.get('voto')).first()
+    if candidato:
+        candidato.votos += 1
+        #Elector.query.filter_by(CI=logged_user.CI).update({'ESTADO_HABILITADO': '0'})
+        conexion.session.commit()
+        flash("Has votado por: {}".format(candidato.NOMBRE))
+    else:
+        print("No se encontró ningún candidato")
+    return redirect(url_for('logout'))
+
+@app.route('/resultados')
+@login_required
+def resultados():
+    cantidad_votos=0
+    candidatos=Candidato.query.all()
+    for candidato in candidatos:
+        cantidad_votos += candidato.votos 
+    return render_template('resultados.html', candidatos=candidatos, cantidad_votos=cantidad_votos)
+   
 @app.route('/logout')
 def logout():
     logout_user()
@@ -182,7 +173,7 @@ def status_401(error):
     return redirect(url_for('login'))
 
 def status_404(error):
-    return "<h1>Página no encontrada</h1>", 404
+    return render_template('error.html')
     
 if __name__ == '__main__':
         #app.config.from_object(config['development'])

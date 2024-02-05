@@ -1,5 +1,7 @@
 body {
-    background-color: #e8f1f2;
+    background-color: white;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 .tittle {
@@ -14,8 +16,9 @@ body {
     background-color: #0D9276;
     color: #fff;
 }
+
 .textoVotos{
-    font-size: 30px; 
+    font-size: 30px;
     color: #333;
     bottom: 10px;
     left: 20px;
@@ -42,6 +45,8 @@ body {
 }
 
 .contenedor-imagenes {
+    position: relative; /* o absolute o fixed, según tus necesidades */
+    top: -60px;
     display: flex;
     justify-content: center;
 }
@@ -51,6 +56,7 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease-in-out;
+    
 }
 
 .contenedor-imagenes img:hover {
@@ -58,95 +64,68 @@ body {
 }
 
 .Nombre {
-    position: relative;
-    top: 90%; 
     left:auto;
-    width: 100%;
-    transform: translateY(-610%);
     color: black;
-    padding: 10px;
-    box-sizing:border-box;
     font-size: 30px;
-    overflow:visible;
-    text-overflow:ellipsis;
     white-space:nowrap;
-    position: relative;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    margin-bottom: 15px;
+    font-weight: bold; /* O puedes usar font-weight: 700; */
 } 
 
+
 .Partido {
-    position: absolute;
-    top: 1%; /* Coloca el texto en el centro verticalmente */
-    left: 0;
-    width: 100%;
-    transform: translateY(350%); /* Ajusta para centrar verticalmente */
+    left:auto;
     color: black;
-    padding: 10px;
-    box-sizing: border-box;
     font-size: 30px;
-    overflow:visible;
-    text-overflow:ellipsis;
     white-space:nowrap;
-    margin-bottom: -300px;
+    flex-direction: column;
+    margin-bottom: 20px;
 }
 
 .CantidadVotos{
-    position: absolute;
-    top: 1%; 
-    left: 0;
-    width: 100%;
-    transform: translateY(450%); 
+    left:auto;
     color: black;
-    padding: 10px;
-    box-sizing: border-box;
     font-size: 30px;
-    overflow:visible;
-    text-overflow:ellipsis;
     white-space:nowrap;
-    margin-bottom: -300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;    
 }
 
 .PorcentajeVotos{
-    position: absolute;
-    top: 1%; /* Coloca el texto en el centro verticalmente */
-    left: 0;
-    width: 100%;
-    transform: translateY(520%); /* Ajusta para centrar verticalmente */
+    left:auto;
     color: black;
-    padding: 10px;
-    box-sizing: border-box;
     font-size: 30px;
-    overflow:visible;
-    text-overflow:ellipsis;
     white-space:nowrap;
-    margin-bottom: -300px;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
 }
 
-.item { /* imagenes */
-    text-align: center;
-    margin: 50px; 
-    margin-top: 90px;
-}
+
 .contenedor img {
     width: 180px;
     height: 180px;
-    margin-bottom: 100px; 
+    margin-bottom: 10px; 
     border-radius: 10px;
 }
-/* .contenedor {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-} */
+
 
 .contenedor {
     position: relative;
     text-align: center;
-    
+    background-color: #eeee;
+    margin-bottom: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 1%;
+    border: 2px solid #bbbbbb;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
 }
 
 .contenedor p {
@@ -156,22 +135,43 @@ body {
     line-height: 500x;
     text-overflow: ellipsis;
     white-space: nowrap;
-    
 }
 
 .contenedor-imagenes .item {
-    margin-bottom: 20px;
     text-align: center;
+    margin: 30px; 
+    margin-top: 90px;
 }
 
 .botones-container {
     position: absolute;
     bottom: 20px; 
-    right: 20px;
+    right: 42px;
 }
 
+.container-contador{
+    display: flex;
+    position: relative;
+    top: -145px;
+    width: 34%;
+    margin-left: 50px;
+    padding-left: 20px;
+    font-size: 40px;
+    line-height: 1rem;
+    font-weight: 700;
+    font-size: 30px;
+    background-color: #0D9276;
+    color: #fff;
+    border-radius: 8px;    
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+
 .botones-container button {
-    font-size: 20px; 
+    border: 2px solid #0D9276;
+    color: #0D9276;
+    background-color: white;
+    font-size: 21px; 
     padding: 20px 40px;
     margin: 15px; 
     border-radius: 10px;
@@ -192,15 +192,13 @@ body {
     display: none;
     position: absolute;
     background-color: #f9f9f9;
-    min-width: 160px;
+    min-width: 10px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     z-index: 1;
     bottom: 100%;
 }
 
 .dropdown-contenido button {
-    width: 100%;
-    padding: 12px 16px;
     text-align: left;
     border: none;
     background-color: inherit;
@@ -214,4 +212,15 @@ body {
 .dropdown:focus-within .dropdown-contenido,
 #botonExportar:focus + .dropdown-contenido {
     display:block;
+}
+
+.link_a{
+    text-decoration: none;
+}
+
+.icons{
+    margin-right: 20px;
+    margin-top: 15px;
+    width: 41px;
+    height: 41px;
 }

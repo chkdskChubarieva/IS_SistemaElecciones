@@ -13,11 +13,11 @@ body{
 .container {
   display: flex;
   justify-content: center;
-  margin-top: 0%;
+  margin-top: 70px; /* Ajusta la cantidad de espacio hacia abajo según tus necesidades */
 }
 .container .image {
   margin-top: 50px;
-  height: 423px;
+  height: 422px;
   border-top: 1px solid #006494; 
   border-bottom: 1px solid #006494; 
   border-left: 1px solid #006494; 
@@ -302,4 +302,8 @@ a{
 }
 button:hover {
   background-color:#9FB3BF;
+}
+
+.small{
+  color:#006494;
 }

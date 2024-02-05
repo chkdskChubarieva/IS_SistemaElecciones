@@ -11,11 +11,6 @@
     $(document).ready(function() {
         // Ocultar el mensaje después de 5 segundos
         $(".flash-messages").delay(5000).fadeOut("slow");
-
-        // Manejar el evento de clic en el botón
-        $("#botonAceptar").click(function() {
-            $(".flash-messages").fadeOut("slow");
-        });
     });
 </script>
 </head>
@@ -28,10 +23,7 @@
     {% if messages %}
     <div class="flash-messages">
       {% for message in messages %}
-
       {{ message }}
-      <button id="botonAceptar">Aceptar</button>
-
       {% endfor %}
     </div>
     {% endif %}
@@ -67,7 +59,7 @@
         </form>
         <div class="social-message">
           <div class="line"></div>
-          <a class="small" href="register.php">No tiene cuenta? cree una</a>
+          <a class="small">____________________________________</a>
           <div class="line"></div>
         </div>
       </div>

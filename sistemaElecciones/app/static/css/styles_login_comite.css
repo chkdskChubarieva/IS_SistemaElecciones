@@ -29,7 +29,7 @@ body{
   padding: 2rem;
   color: rgba(243, 244, 246, 1);
   position: relative;
-  padding-top: 1rem; 
+  padding-top: 1rem;  
 }
 
 .flash-container{
@@ -38,6 +38,7 @@ body{
   background-color: #0D9276;
   justify-content: center;
   color: #fff;
+  position: absolute;
 }
 
 .navbar {
@@ -188,7 +189,7 @@ body{
 .line {
   height: 1px;
   flex: 1 1 0%;
-  background-color: rgba(55, 65, 81, 1);
+  color:#0D9276;
 }
 
 .social-message .message {
@@ -299,4 +300,8 @@ a{
 }
 button:hover {
   background-color:#9FB3BF;
+}
+
+.small{
+  color: #0D9276;
 }
