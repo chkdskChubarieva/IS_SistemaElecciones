@@ -143,12 +143,11 @@ def emitir():
 @app.route('/emitirVoto', methods=['GET', 'POST']) 
 @login_required
 def emitirVoto():
-   global logged_user
    if request.method == 'POST':
     candidato = Candidato.query.filter_by(PARTIDO=request.form.get('voto')).first()
     if candidato:
         candidato.votos += 1
-        Elector.query.filter_by(CI=logged_user.CI).update({'ESTADO_HABILITADO': '0'})
+        Elector.query.filter_by(CI=current_user.CI).update({'ESTADO_HABILITADO': '0'})
         conexion.session.commit()
         flash("Has votado por: {}".format(candidato.NOMBRE))
     else:
