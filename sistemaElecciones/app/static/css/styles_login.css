@@ -40,6 +40,13 @@ body{
   justify-content: center;
   color: #fff;
   position: absolute;
+  font-size: 18px;
+  font-style: bold;
+}
+#info-login{
+  padding-right: 5px;
+  width: 22px;
+
 }
 
 .navbar {

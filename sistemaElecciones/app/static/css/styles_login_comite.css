@@ -38,9 +38,14 @@ body{
   background-color: #0D9276;
   justify-content: center;
   color: #fff;
+  font-size: 18px;
   position: absolute;
 }
+#info-comite{
+  padding-right: 5px;
+  width: 22px;
 
+}
 .navbar {
   background-color: rgba(238,238,238,255);
   width: 100%;

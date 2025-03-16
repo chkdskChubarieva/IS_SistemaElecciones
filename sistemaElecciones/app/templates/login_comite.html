@@ -22,6 +22,7 @@
     {% with messages = get_flashed_messages() %}
     {% if messages %}
     <div class="flash-messages">
+      <img src="../static/css/image/informacion.png" alt="" id="info-comite">
       {% for message in messages %}
       {{ message }}
       {% endfor %}

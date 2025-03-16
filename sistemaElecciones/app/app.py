@@ -84,7 +84,6 @@ def login():
         valor_mes = partes[0].strip()
         anio = request.form.get('anio')
         fecha_n = anio + "-" + valor_mes +"-"+dia
-        global logged_user
         logged_user = Elector.query.filter_by(CI=request.form['ci'], FECHA_NACIMIENTO=fecha_n).first()
        
         if logged_user != None:
@@ -175,7 +174,6 @@ def status_404(error):
     return render_template('error.html')
     
 if __name__ == '__main__':
-        #app.config.from_object(config['development'])
         app.register_error_handler(401, status_401)
         app.register_error_handler(404, status_404)
         app.run(debug=True, port=5000)
