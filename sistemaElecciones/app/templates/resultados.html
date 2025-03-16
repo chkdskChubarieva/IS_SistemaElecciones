@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados Elecciones</title>
+    <link rel="stylesheet" href="../static/css/resultados.css">
+    <script>
+        function toggleDropdown() {
+            var dropdownContenido = document.querySelector('.dropdown-contenido');
+            if (dropdownContenido.style.display === 'block') {
+                dropdownContenido.style.display = 'none';
+            } else {
+                dropdownContenido.style.display = 'block';
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="tittle">Resultados de las Elecciones</div>
+
+
+    <div class="contenedor-imagenes">
+        {% for candidato in candidatos %}
+            <div class="item">
+                <div class="contenedor">
+                    <div class="Nombre">{{candidato.NOMBRE}}</div>
+                    <img src="../static/css/image/{{candidato.FOTO}}" alt="Imagen 1">
+                    <div class="Partido">{{candidato.PARTIDO}}</div>
+                    <div class="CantidadVotos">{{candidato.votos}}</div>
+                    <div class="PorcentajeVotos">{{ ((candidato.votos / cantidad_votos) * 100) | round(2) }}%</div>
+                    
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+
+    <div class="container-contador">
+        <img src="../static/css/image/votar.png" class="icons" alt="">
+        <p> Total de votos emitidos: {{cantidad_votos}}</p>
+    </div>
+    
+
+    <div class="botones-container">
+
+        <a href="./resultados"><button id="botonActualizar">Actualizar</button></a>
+
+        <a href="./logout" class="link_a">
+            <button id="botonSalir">Salir</button>
+        </a>
+
+        <div class="dropdown">
+            <button id="botonExportar" onclick="toggleDropdown()" tabindex="0">Exportar datos</button>
+            <div class="dropdown-contenido">
+                <button onclick="exportarComoCSV()">Exportar como CSV</button>
+                <button onclick="exportarComoPDF()">Exportar como PDF</button>
+            </div>
+        </div>
+        <button id="botonGraficas">Ver gráficas</button>
+    </div>
+</body>
+
+</html>

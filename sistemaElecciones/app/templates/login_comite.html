@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="https://cdn.pixabay.com/photo/2016/03/31/19/57/avatar-1295404_1280.png" />
+  <link rel="stylesheet" href="../static/css/styles_login_comite.css">
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function() {
+        // Ocultar el mensaje después de 5 segundos
+        $(".flash-messages").delay(5000).fadeOut("slow");
+    });
+</script>
+</head>
+
+<body>
+
+  <div class="flash-container">
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="flash-messages">
+      <img src="../static/css/image/informacion.png" alt="" id="info-comite">
+      {% for message in messages %}
+      {{ message }}
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% endwith %}
+
+  </div>
+
+  <div class="container">
+    <img src="../static/css/image/oep.jpg" class="image" alt="">
+
+    <div class="container-login">
+
+      <div class="title">Iniciar Sesión</div>
+      <div class="form-container">
+
+        <form class="form" method="POST" action="/login_comite">
+          <div class="input-group">
+            <img src="../static/css/image/tarjeta2_comite.png" class="icons" alt="">
+            <label for="usuario" id="ci">Cédula de Identidad</label>
+            <input class="form-control" id="ci" name="ci" type="password" placeholder="Ejm: 8912557" />
+          </div>
+
+          <div class="input-group">
+            <img src="../static/css/image/codigo_comite.png" class="icons" alt="">
+            <label for="usuario" id="ci">Código de comite electoral</label>
+            <input class="form-control" id="codigo_comite" name="codigo_comite" type="password" placeholder="Ejm: 8912557" />
+          </div>
+
+          <button type="submit" href="resultados.html" class="button_a">
+            <img src="" alt="">
+            Ingresar
+          </button>
+        </form>
+        <div class="social-message">
+          <div class="line"></div>
+          <a class="small">____________________________________</a>
+          <div class="line"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer>
+    <div class="footer">
+      <div class="text-muted">Copyright CDL &copy; Your Website 2023
+      </div>
+      <div>
+        <a href="#">Privacy Policy</a>
+        &middot;
+        <a href="#">Terms &amp; Conditions</a>
+      </div>
+    </div>
+  </footer>
+</body>
+
+</html>

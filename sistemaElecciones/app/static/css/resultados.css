@@ -1,0 +1,226 @@
+body {
+    background-color: white;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.tittle {
+    width: 100%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    margin-left: 0px;
+    text-align:center;
+    font-size: 70px;
+    line-height: 2rem;
+    font-weight: 700;
+    background-color: #0D9276;
+    color: #fff;
+}
+
+.textoVotos{
+    font-size: 30px;
+    color: #333;
+    bottom: 10px;
+    left: 20px;
+    position: absolute;
+}
+
+.contadorDeVotos{
+    height: auto;
+    width: 200px;
+    font-size: 30px; 
+    position: absolute;
+    bottom: 20px;
+    left: 320px;
+    background-color: #e8f1f2;
+    color:#333;
+    padding: 0px; /* Añade relleno para separar el texto del borde */
+    border: 4px solid #0D9276; /* Establece el ancho, estilo y color del borde */
+    display: inline-block; /* Evita que el fondo se extienda más allá del contenido */
+    border-radius: 5px; /* Añade esquinas redondeadas al borde (opcional) */
+    text-align: center;
+    box-sizing:content-box;
+    margin: 0;
+    line-height: 0; 
+}
+
+.contenedor-imagenes {
+    position: relative; /* o absolute o fixed, según tus necesidades */
+    top: -60px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-imagenes img {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+    
+}
+
+.contenedor-imagenes img:hover {
+    transform: scale(1.05);
+}
+
+.Nombre {
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    font-weight: bold; /* O puedes usar font-weight: 700; */
+} 
+
+
+.Partido {
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.CantidadVotos{
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;    
+}
+
+.PorcentajeVotos{
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+
+.contenedor img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 10px; 
+    border-radius: 10px;
+}
+
+
+.contenedor {
+    position: relative;
+    text-align: center;
+    background-color: #eeee;
+    margin-bottom: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 1%;
+    border: 2px solid #bbbbbb;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.contenedor p {
+    font-size: 30px;
+    margin: 0px;
+    margin-bottom: 0px;
+    line-height: 500x;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.contenedor-imagenes .item {
+    text-align: center;
+    margin: 30px; 
+    margin-top: 90px;
+}
+
+.botones-container {
+    position: absolute;
+    bottom: 20px; 
+    right: 42px;
+}
+
+.container-contador{
+    display: flex;
+    position: relative;
+    top: -145px;
+    width: 34%;
+    margin-left: 50px;
+    padding-left: 20px;
+    font-size: 40px;
+    line-height: 1rem;
+    font-weight: 700;
+    font-size: 30px;
+    background-color: #0D9276;
+    color: #fff;
+    border-radius: 8px;    
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2); 
+}
+
+
+.botones-container button {
+    border: 2px solid #0D9276;
+    color: #0D9276;
+    background-color: white;
+    font-size: 21px; 
+    padding: 20px 40px;
+    margin: 15px; 
+    border-radius: 10px;
+}
+
+.botones-container button:hover {
+    background-color: #0D9276; 
+    color: #fff;
+}
+
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-contenido {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    bottom: 100%;
+}
+
+.dropdown-contenido button {
+    text-align: left;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    width:max-content;
+}
+
+.dropdown-contenido button:hover {
+    background-color: #0D9276;
+}
+.dropdown:focus-within .dropdown-contenido,
+#botonExportar:focus + .dropdown-contenido {
+    display:block;
+}
+
+.link_a{
+    text-decoration: none;
+}
+
+.icons{
+    margin-right: 20px;
+    margin-top: 15px;
+    width: 41px;
+    height: 41px;
+}

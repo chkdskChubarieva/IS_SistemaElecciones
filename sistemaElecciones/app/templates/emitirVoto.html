@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emitir Voto</title>
+    <link rel="stylesheet" href="../static/css/styles_voto.css">
+    <script>
+        function toggleDropdown() {
+            var dropdownContenido = document.querySelector('.dropdown-contenido');
+            if (dropdownContenido.style.display === 'block') {
+                dropdownContenido.style.display = 'none';
+            } else {
+                dropdownContenido.style.display = 'block';
+            }
+        }
+
+    </script>
+    <script>
+        $(document).ready(function () {
+            // Ocultar el mensaje después de 5 segundos
+            $(".flash-messages").delay(3000).fadeOut("slow");
+        });
+    </script>
+</head>
+
+<body>
+    <div class="flash-container">
+
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="flash-messages">
+            {% for message in messages %}
+
+            {{ message }}
+            
+            {% endfor %}
+        </div>
+        {% endif %}
+        {% endwith %}
+        <div class="tittle">Candidatos Elecciones</div>
+
+        <form action="/emitirVoto" id="formVoto" method="post">
+            <div class="contenedor-imagenes">
+                {% for candidato in candidatos %}
+                <div class="item">
+                   
+                    <div class="contenedor" style="background-color: {{candidato.COLOR}};">
+                        {%if candidato.COLOR == '':%}
+                        <div class="Nombre">{{candidato.NOMBRE}}</div>
+                        {%else:%}
+                        <div class="Nombre" style="color: white;">{{candidato.NOMBRE}}</div>
+                        {%endif%}
+                        <img class="imagen" src="../static/css/image/{{candidato.FOTO}}" alt="Imagen 5">
+                        {%if candidato.COLOR == '':%}
+                        <div class="Partido">{{candidato.PARTIDO}}</div>
+                        {%else:%}
+                        <div class="Partido" style="color: white;">{{candidato.PARTIDO}}</div>
+                        {%endif%}
+                        <input type="radio" name="voto" class="cuadrado" value="{{candidato.PARTIDO}}">
+
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit" href="resultados.html" class="button_a">
+                <img src="" alt="">
+                EMITIR VOTO
+            </button>
+        </form>
+    </div>
+</body>
+
+<script>
+
+    document.getElementById('formVoto').addEventListener('submit', function (e) {
+        var radios = document.getElementsByName('voto');
+        var formValid = false;
+        var valorSeleccionado = null; // Variable para almacenar el valor del radio seleccionado
+
+        var i = 0;
+        while (!formValid && i < radios.length) {
+            if (radios[i].checked)
+                formValid = true;
+            valorSeleccionado = radios[i].value; // Obtener el valor del radio seleccionado
+            i++;
+        }
+
+        if (!formValid) {
+            alert('Por favor, selecciona una opción.');
+            e.preventDefault();
+        }
+    });
+
+</script>
+
+
+</html>

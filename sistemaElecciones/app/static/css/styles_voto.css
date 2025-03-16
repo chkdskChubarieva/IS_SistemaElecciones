@@ -1,0 +1,185 @@
+body {
+    background-color: white;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+}   
+
+.tittle {
+    width: 100%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    margin-left: 0px;
+    text-align:center;
+    font-size: 70px;
+    line-height: 2rem;
+    font-weight: 700;
+    background-color: #006494;
+    color: #fff;
+    overflow: hidden;
+}
+
+.contenedor-imagenes {
+    position: relative; /* o absolute o fixed, según tus necesidades */
+    top: -60px;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-imagenes img {
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.contenedor-imagenes img:hover {
+    transform: scale(1.05);
+}
+
+.contenedor img {
+    width: 180px;
+    height: 180px;
+    margin-bottom: 95px; 
+    border-radius: 10px;
+}
+
+.contenedor {
+    position: relative;
+    text-align: center;
+    background-color: #eeee;
+    margin-bottom: 80px;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    bottom: 1%;
+    border: 2px solid #aaaa;
+    border-radius: 8px;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease-in-out;
+}
+
+.image{
+    position: relative;
+}
+
+.contenedor-imagenes .item {
+    margin-bottom: 20px;
+    text-align: center;
+}
+.Nombre {
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    font-weight: bold; /* O puedes usar font-weight: 700; */
+} 
+
+.Partido {
+    position: relative;
+    top: -60px;
+    left:auto;
+    color: black;
+    font-size: 30px;
+    white-space:nowrap;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* Estilo base para el cuadro de radio */
+.cuadrado {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #8c8c8c;
+    border-radius: 8px;
+    outline: none;
+    appearance: none;
+    position: relative; /* Añadido para posicionar correctamente el contenido adicional */
+    top: -50px; /* Mueve el cuadro de radio hacia arriba */
+  }
+  
+  /* Estilo para resaltar el cuadro de radio cuando está seleccionado */
+  .cuadrado:checked {
+    background-color: #e8f1f2;
+    border-color: #333;
+  }
+  
+  /* Pseudo-elemento para mostrar una "X" cuando está seleccionado */
+  .cuadrado:checked::before {
+    content: 'X';
+    position: absolute;
+    font-weight: bold; /* O puedes usar font-weight: 700; */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: black; /* Color del texto (puedes ajustarlo según tus necesidades) */
+    font-size: 35px; /* Ajusta el tamaño de la letra según tus necesidades */
+  }
+
+
+.item { /* imagenes */
+    text-align: center;
+    margin: 30px; 
+    margin-top: 90px;
+}
+
+
+.button_a {
+    position: relative; /* o absolute o fixed, según tus necesidades */
+    top: -180px;
+    display: block;
+    border-radius: 0.375rem;
+    border: 1.4px solid #006494;
+    margin: 0 auto;
+    background-color: #f2f2f2;
+    color: #006494;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 45px;
+    font-size: 40px;
+    font-weight: bold; /* O puedes usar font-weight: 700; */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 0, 0, 0.2);
+  }
+  
+.button_a:hover {
+    background-color: #006494;
+    color: #fff;
+}
+
+
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+.dropdown-contenido {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    z-index: 1;
+    bottom: 100%;
+}
+
+.dropdown-contenido button {
+    width: 100%;
+    padding: 12px 16px;
+    text-align: left;
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    width:max-content;
+}
+
+.dropdown-contenido button:hover {
+    background-color: #006494;
+}
+.dropdown:focus-within .dropdown-contenido,
+#botonExportar:focus + .dropdown-contenido {
+    display:block;
+}
